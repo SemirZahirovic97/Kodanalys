@@ -3,14 +3,11 @@
 namespace Kodanalys
 {
     class Program
-    {
-        static string[] celestialWhispers = new string[10];
-        static int magicConstant = 0;
-
+     {
         static void Main(string[] args)
         {
-            bool programHalted = true;
-            while (programHalted)
+            bool isRunning = true;
+            while (isRunning)
             {
                 Console.WriteLine("Välj ett alternativ:");
                 Console.WriteLine("1. Lägg till användare");
@@ -26,90 +23,49 @@ namespace Kodanalys
                     case "1":
           
                     Console.Write("Ange namn: ");
-                    string strUsr = Console.ReadLine();
-                    if (magicConstant < 10)
-                    {
-                        celestialWhispers[magicConstant] = strUsr;
-                        magicConstant++;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Listan är full!");
-                    }
-                    break;
+                    string UserToAdd = Console.ReadLine();
+                    UserManager.AddUser(UserToAdd);
+                        break;
 
                     case "2":
-                
-                    Console.WriteLine("Användare:");
-                    for (int i = 0; i < magicConstant; i++)
-                    {
-                        Console.WriteLine(celestialWhispers[i]);
-                    }
-                    break;
+                     
+                     UserManager.DisplayUsers();
+
+                        break;
 
                     case "3":
                 
                     Console.Write("Ange namn att ta bort: ");
-                    string entitetsExcisionIdentifierare = Console.ReadLine();
-                    int nanoBanana = -1;
-                    for (int i = 0; i < magicConstant; i++)
-                    {
-                        if (celestialWhispers[i] == entitetsExcisionIdentifierare)
-                        {
-                            nanoBanana = i;
-                            break;
-                        }
-                    }
-
-                    if (nanoBanana != -1)
-                    {
-                        for (int i = nanoBanana; i < magicConstant - 1; i++)
-                        {
-                            celestialWhispers[i] = celestialWhispers[i + 1];
-                        }
-                        magicConstant--;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Användaren hittades inte.");
-                    }
-                    break;
+                    string UserToRemove = Console.ReadLine();
+                    UserManager.RemoveUser(UserToRemove);
+                        break;
 
                     case "4":
                 
                     Console.Write("Ange namn att söka: ");
-                    string nebulousQuery = Console.ReadLine();
-                    bool f00l = false;
-                    for (int i = 0; i < magicConstant; i++)
-                    {
-                        if (celestialWhispers[i] == nebulousQuery)
-                        {
-                            f00l = true;
-                            break;
-                        }
-                    }
-                    if (f00l)
-                    {
-                        Console.WriteLine("Användaren finns i listan.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Användaren hittades inte.");
-                    }
-                    break;
+                    string UserToSearch = Console.ReadLine();
+                        UserManager.SearchUser(UserToSearch);
+
+                        break;
 
                     case "5":
                         
-                    programHalted = false;
+                    isRunning = false;
+                        Console.WriteLine("Avslutar programmet.");
                         break;
 
                     default:
-                {
+               
                     Console.WriteLine("Ogiltigt val.");
                             break;
-                        }
+                    
                 
             }
         }
     }
 }
+    class UserManager
+    {
+        private List<string> users = new List<string>();
+        private const int maxUsers = 10;
+    }
