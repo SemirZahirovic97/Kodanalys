@@ -6,6 +6,7 @@ namespace Kodanalys
      {
         static void Main(string[] args)
         {
+            var UserManager = new UserManager();
             bool isRunning = true;
             while (isRunning)
             {
@@ -68,4 +69,54 @@ namespace Kodanalys
     {
         private List<string> users = new List<string>();
         private const int maxUsers = 10;
-    }
+
+        public void AddUser(string name)
+        {
+            if (users.Count >= maxUsers)
+            {
+                Console.WriteLine("Max antal användare nått.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                Console.WriteLine("Namn kan inte vara tomt.");
+                return;
+            }
+            users.Add(name);
+            Console.WriteLine($"Användare {name} tillagd.");
+        }
+        public void DisplayUsers()
+        {
+            if (users.Count == 0)
+            {
+                Console.WriteLine("Inga användare tillagda.");
+                return;
+            }
+            Console.WriteLine("Användare:");
+            foreach (var user in users)
+            {
+                Console.WriteLine(user);
+            }
+        }
+        public void RemoveUser(string name)
+        {
+            if (users.Remove(name))
+            {
+                Console.WriteLine($"Användare {name} borttagen.");
+            }
+            else
+            {
+                Console.WriteLine($"Användare {name} hittades inte.");
+            }
+        }
+        public void SearchUser(string name)
+        {
+            if (users.Contains(name))
+            {
+                Console.WriteLine($"Användare {name} finns.");
+            }
+            else
+            {
+                Console.WriteLine($"Användare {name} hittades inte.");
+            }
+        } }}
