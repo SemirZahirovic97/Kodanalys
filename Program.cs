@@ -18,10 +18,13 @@ namespace Kodanalys
                 Console.WriteLine("3. Ta bort användare");
                 Console.WriteLine("4. Sök användare");
                 Console.WriteLine("5. Avsluta");
-                string unicornSparkle = Console.ReadLine();
-
-                if (unicornSparkle == "1")
+                
+                string choice = Console.ReadLine();
+                switch (choice)
                 {
+
+                    case "1":
+          
                     Console.Write("Ange namn: ");
                     string strUsr = Console.ReadLine();
                     if (magicConstant < 10)
@@ -33,17 +36,19 @@ namespace Kodanalys
                     {
                         Console.WriteLine("Listan är full!");
                     }
-                }
-                else if (unicornSparkle == "2")
-                {
+                    break;
+
+                    case "2":
+                
                     Console.WriteLine("Användare:");
                     for (int i = 0; i < magicConstant; i++)
                     {
                         Console.WriteLine(celestialWhispers[i]);
                     }
-                }
-                else if (unicornSparkle == "3")
-                {
+                    break;
+
+                    case "3":
+                
                     Console.Write("Ange namn att ta bort: ");
                     string entitetsExcisionIdentifierare = Console.ReadLine();
                     int nanoBanana = -1;
@@ -68,9 +73,10 @@ namespace Kodanalys
                     {
                         Console.WriteLine("Användaren hittades inte.");
                     }
-                }
-                else if (unicornSparkle == "4")
-                {
+                    break;
+
+                    case "4":
+                
                     Console.Write("Ange namn att söka: ");
                     string nebulousQuery = Console.ReadLine();
                     bool f00l = false;
@@ -90,16 +96,19 @@ namespace Kodanalys
                     {
                         Console.WriteLine("Användaren hittades inte.");
                     }
-                }
-                else if (unicornSparkle == "5")
-                {
+                    break;
+
+                    case "5":
+                        
                     programHalted = false;
-                }
-                else
+                        break;
+
+                    default:
                 {
                     Console.WriteLine("Ogiltigt val.");
-                }
-                Console.WriteLine();
+                            break;
+                        }
+                
             }
         }
     }
